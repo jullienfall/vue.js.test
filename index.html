@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="outer">
+        <div class="grid">
+
+            <h1>Post Trucks</h1>
+            <button class="btn-play"><i class="fas fa-play-circle icon"></i></button>
+            <button v-on:click="addNew = true"><i class="fas fa-plus icon"></i> New</button>
+            <button v-on:click="removeAll"><i class="fas fa-times icon-del"></i> Delete All</button>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th v-for="column in columns">{{ column }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="row in tableData">
+                        <td v-for="data in row">{{ data }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <transition name="fade">
+                <div class="add-item" v-show="addNew">
+                    <button class="close-btn" v-on:click="addNew = false"><i class="fas fa-times"></i></button>
+                    <h2>New item:</h2>
+                    <form id="form" v-on:submit.prevent="addItem()">
+                        <input type="text" placeholder="Call Control" v-model="newItem.callwaiting">
+                        <input type="text" placeholder="Sound / Auto Call" v-model="newItem.sound">
+                        <input type="text" placeholder="Truck" v-model="newItem.truck">
+                        <input type="text" placeholder="Origin" v-model="newItem.origin">
+                        <input type="text" placeholder="Destination" v-model="newItem.destination">
+                        <input type="text" placeholder="Pickup" v-model="newItem.pickup">
+                        <input type="text" placeholder="Weigth" v-model="newItem.weigth">
+                        <input type="text" placeholder="Trip" v-model="newItem.trip">
+                        <input type="text" placeholder="Alarm" v-model="newItem.alarm">
+                        <input type="text" placeholder="Actions" v-model="newItem.action">
+                        <br>
+                        <input type="submit" class="add-btn" value="Add">
+                    </form>
+                </div>
+            </transition>
+        </div>
+    </div>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
